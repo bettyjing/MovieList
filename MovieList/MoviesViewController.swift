@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -70,8 +71,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = movies![indexPath.row] //movies is set as an optional via ? mark so therefore, you need to unwrap it with a ! mark.
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
-            cell.titleLabel!.text = title
-        cell.overviewLabel!.text = overview 
+        let posterPath = movie["poster_path"] as! String
+        cell.titleLabel!.text = title
+        cell.overviewLabel!.text = overview
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+        let imageUrl = NSURL(string: baseUrl + posterPath)
+         cell.posterView.setImageWithURL(imageUrl!) //thanks to cocapod
+        
         
         
         return cell
