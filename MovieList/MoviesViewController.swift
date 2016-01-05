@@ -11,6 +11,7 @@ import UIKit
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
+    var movies : [NSDictionary]? //array of movies consists of NSDictionary stuff. the question marks makes it so that the movies may be an array of dictionaries or nothing at all (in case the api breaks down or something)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +35,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             NSLog("response: \(responseDictionary)")
                             //parses the JSON into NSdictionary. 
                             
+                           self.movies = responseDictionary["results"] as! [NSDictionary] //using self.movies instead of just movies lets xcode know that we are referring only to movies in this VC.
+                            self.tableView.reloadData()
                     }
                 }
         });
         task.resume()
-
-        
-        
-        
-        
-        
-        
         
         // Do any additional setup after loading the view.
     }
@@ -56,14 +52,28 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     //returns # of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        //if there are movies
+        if let movies = movies
+        {
+            return movies.count //cause you wanna know how many rows of movies to make
+        }
+        else
+        {
+            return 0
+        }
     }
     
     
     //function that allows you to do the data input
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) //index path tells us where the cell is in the table view. also by using reusable cell identifers, it makes it so that when you scroll off screen, it is recycled. therefore, the computer doesn't have to remember tons of things.
-        cell.textLabel!.text = "row \(indexPath.row)"
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell //index path tells us where the cell is in the table view. also by using reusable cell identifers, it makes it so that when you scroll off screen, it is recycled. therefore, the computer doesn't have to remember tons of things.
+        let movie = movies![indexPath.row] //movies is set as an optional via ? mark so therefore, you need to unwrap it with a ! mark.
+        let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
+            cell.titleLabel!.text = title
+        cell.overviewLabel!.text = overview 
+        
+        
         return cell
         
     }
