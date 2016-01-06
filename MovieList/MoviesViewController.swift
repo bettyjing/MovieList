@@ -42,6 +42,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 }
         });
         task.resume()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
         
         // Do any additional setup after loading the view.
     }
@@ -50,6 +53,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     //returns # of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,6 +66,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         {
             return 0
         }
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        // Do your job, when done:
+        refreshControl.endRefreshing()
     }
     
     
