@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     var movies : [NSDictionary]? //array of movies consists of NSDictionary stuff. the question marks makes it so that the movies may be an array of dictionaries or nothing at all (in case the api breaks down or something)
     
@@ -68,10 +68,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    
+    
+    
     func refresh(refreshControl: UIRefreshControl) {
         // Do your job, when done:
         refreshControl.endRefreshing()
     }
+    
+    
     
     
     //function that allows you to do the data input
@@ -90,8 +95,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         return cell
-        
     }
+    
+
     
 
     /*
