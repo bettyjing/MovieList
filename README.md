@@ -52,7 +52,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-# Project 2 - *Movie List *
+# Project 2 - *Movie List*
 
 **Name of your app** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
@@ -94,7 +94,7 @@ Challenges with the design.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [2015] [Betty Jing]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
