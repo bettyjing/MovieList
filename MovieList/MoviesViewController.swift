@@ -16,7 +16,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var endpoint: String!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         tableView.dataSource = self
         tableView.delegate  = self
 
@@ -83,6 +85,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     //function that allows you to do the data input
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell //index path tells us where the cell is in the table view. also by using reusable cell identifers, it makes it so that when you scroll off screen, it is recycled. therefore, the computer doesn't have to remember tons of things.
+        
+        let swiftColor = UIColor(red: 1, green: 0.55, blue: 0.54, alpha: 1)
+        let Color2 = UIColor(red: 0.95, green: 0.61, blue: 0.35, alpha: 1)
+
+        //change cell color when selected
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = swiftColor
+        cell.backgroundColor = Color2
+        cell.selectedBackgroundView = backgroundView
+        
         let movie = movies![indexPath.row] //movies is set as an optional via ? mark so therefore, you need to unwrap it with a ! mark.
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
