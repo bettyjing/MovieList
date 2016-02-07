@@ -129,7 +129,7 @@
         <!--Navigation Controller-->
         <scene sceneID="4Vq-VV-1Dd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vTY-XL-355" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="vTY-XL-355" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5zC-qX-2tP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -142,7 +142,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYz-uX-ktj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="224" y="259"/>
+            <point key="canvasLocation" x="228" y="259"/>
         </scene>
     </scenes>
 </document>

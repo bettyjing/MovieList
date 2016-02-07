@@ -13,6 +13,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     var movies : [NSDictionary]? //array of movies consists of NSDictionary stuff. the question marks makes it so that the movies may be an array of dictionaries or nothing at all (in case the api breaks down or something)
+    var endpoint: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate  = self
 
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed" //lets us access the api.
-        let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
         let session = NSURLSession(
             configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
