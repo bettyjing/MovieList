@@ -85,29 +85,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = movies![indexPath.row] //movies is set as an optional via ? mark so therefore, you need to unwrap it with a ! mark.
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
-        let posterPath = movie["poster_path"] as! String
         cell.titleLabel!.text = title
         cell.overviewLabel!.text = overview
+        
         let baseUrl = "http://image.tmdb.org/t/p/w500"
+        if let posterPath = movie["poster_path"]  as? String {
         let imageUrl = NSURL(string: baseUrl + posterPath)
          cell.posterView.setImageWithURL(imageUrl!) //thanks to cocapod
-        
-        
+        }
         
         return cell
     }
-    
 
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let movie = movies![indexPath!.row]
+        let detailViewController = segue.destinationViewController as! DetailViewController
+        detailViewController.movie = movie
     }
-    */
-
 }
